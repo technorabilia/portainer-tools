@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv sh
+PUID=${PUID:-1970}
+PGID=${PGID:-1970}
+
+groupmod -o -g "$PGID" simon
+usermod -o -u "$PUID" simon
+
+chown simon:simon /config

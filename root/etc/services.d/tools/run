@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+cd /app
+exec s6-setuidgid simon python3 run.py

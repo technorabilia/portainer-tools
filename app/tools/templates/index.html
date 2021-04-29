@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<legend class="border-bottom mb-4 mt-4">Portainer App Template definitions</legend>
+
+<table id="table" data-sort-name="name" data-sort-order="asc" data-toggle="table" data-search="false"
+    data-click-to-select="true">
+    <thead>
+        <tr>
+            <th data-field="state" data-checkbox="true"></th>
+            <th data-sortable="true" data-field="name">Name</th>
+            <th data-sortable="true" data-field="url">URL</th>
+            <th data-field="actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for apptemplate in apptemplates %}
+        <tr>
+            <td data-field="state" data-checkbox="true"></td>
+            <td data-field="name">{{ apptemplate.name }}</td>
+            <td data-field="url">{{ apptemplate.url }}</td>
+            <td data-field="actions">
+                <div class="btn-group">
+                    <form action="{{ apptemplate.url }}" method="GET">
+                        <input class="btn btn-sm btn-outline-primary me-2" type="submit" value="View" />
+                    </form>
+                    <form action="{{ url_for('apptemplates.set_apptemplate', apptemplate_id=apptemplate.id) }}"
+                        method="POST">
+                        <input class="btn btn-sm btn-outline-primary me-2" type="submit" value="Set">
+                    </form>
+                    <form action="{{ url_for('apptemplates.update_apptemplate', apptemplate_id=apptemplate.id) }}"
+                        method="GET">
+                        <input class="btn btn-sm btn-outline-primary me-2" type="submit" value="Update">
+                    </form>
+                    <form action="{{ url_for('apptemplates.delete_apptemplate', apptemplate_id=apptemplate.id) }}"
+                        method="POST">
+                        <input class="btn btn-sm btn-outline-primary" type="submit" value="Delete">
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<div class="btn-group">
+    <form id="merge-button">
+        <input class="btn btn-sm btn-outline-primary mt-2" type="submit" value="Merge">
+    </form>
+    <form action="{{ url_for('apptemplates.upload_apptemplate') }}" method="GET">
+        <input class="btn btn-sm btn-outline-primary m-2" type="submit" value="Upload">
+    </form>
+    <form action="{{ url_for('apptemplates.create_apptemplate') }}" method="GET">
+        <input class="btn btn-sm btn-outline-primary mt-2" type="submit" value="Add">
+    </form>
+</div>
+
+{% endblock content %}
