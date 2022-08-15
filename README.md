@@ -5,3 +5,5 @@
 This application allows you to add your own App Template definitions, merge them with [existing ones](https://www.technorabilia.com/portainer-app-templates-for-linuxserver-io-docker-containers/) and host them on your own server. You can set the Portainer App Templates URL from within the application to easily switch App Template definitions.
 
 Detailed information about installing and using the application and more can be found [here](https://www.technorabilia.com/portainer-tools-merge-and-host-app-template-definitions/).
+
+⚠️ Note that it currently doesn't work to use Portainer port 9443 (SSL). Use port 9000 instead.
