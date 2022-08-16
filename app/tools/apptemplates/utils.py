@@ -43,7 +43,7 @@ def set_template_url(templates_url):
         headers = {
             'Content-Type': 'application/json'
         }
-        response = requests.request("POST", url, headers=headers, data=payload)
+        response = requests.request("POST", url, headers=headers, data=payload, verify=False)
         jwt = json.loads(response.text)["jwt"]
 
         url = base_url + "/api/settings"
@@ -54,7 +54,7 @@ def set_template_url(templates_url):
             'Content-Type': 'application/json',
             'Authorization': 'Bearer {}'.format(jwt)
         }
-        response = requests.request("PUT", url, headers=headers, data=payload)
+        response = requests.request("PUT", url, headers=headers, data=payload, verify=False)
     except Exception as e:
         message = f"{str(e)}"
         return (True, message)
